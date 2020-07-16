@@ -1,7 +1,7 @@
 # NRF24-Remote-Control
 
 //copyright reserve @ Robotics in Kenya
-//For Subscribe to My Youtube Channe, Robotics In Kenya
+//For more Subscribe to My Youtube Channe, Robotics In Kenya
 //Reach Me:
 // FaceBook: Robotics In Kenya
 // Instagram: robotics_in_kenya
