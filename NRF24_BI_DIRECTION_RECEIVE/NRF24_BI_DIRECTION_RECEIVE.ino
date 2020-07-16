@@ -4,16 +4,6 @@
 #include <RF24.h>
 #include <Servo.h>
 
-#include <VNH3SP30.h>
-
-VNH3SP30 MotorA;
-
-#define M1_PWM 9   // pwm pin motor
-#define M1_INA 42    // control pin INA
-#define M1_INB 40    // control pin INB
-
-
-#define button 4
 RF24 radio(7, 8); // CE, CSN
 const byte addresses[][6] = {"00001", "00002"};
 Servo myServo;
@@ -41,23 +31,21 @@ void setup() {
   MotorA.begin(M1_PWM, M1_INA, M1_INB);
 }
 void loop() {
-analogWrite(13,DATA.Analog_R);
-      int power = map(DATA.CH2_X, 68,254, -255,255);
+analogWrite(13,DATA.Analog_R); // fade the led
+
 MotorA.setSpeed(power);
   radio.startListening();
   if ( radio.available()) {
-    while (radio.available()) {
-      int angleV = 0;
-      radio.read(&DATA, sizeof(RECEIVE_REMOTE_DATA));
-      Serial_print();
-
-
-     delay(10);
+    while (radio.available())
+         {
+          radio.read(&DATA, sizeof(RECEIVE_REMOTE_DATA));
+          Serial_print();
+          delay(10);
      
-//    radio.stopListening();
-//    buttonState = digitalRead(button);
-//    radio.write(&buttonState, sizeof(buttonState));
-  }
+         //    radio.stopListening();
+         //    buttonState = digitalRead(button);
+         //    radio.write(&buttonState, sizeof(buttonState));
+         }
 //Serial.println(radio.available());
  }
 }
